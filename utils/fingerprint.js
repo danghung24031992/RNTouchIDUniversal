@@ -54,8 +54,8 @@ const touchIDIOSDriver = {
       return Promise.reject();
     }
   },
-  authenticate: (onAttempt, acceptPasscode) => {
-    return IOSTouchID.authenticate('Quét vân tay để tiếp tục')
+  authenticate: (onAttempt, acceptPasscode,title) => {
+    return IOSTouchID.authenticate(title)
       .catch((err) => {
         if (acceptPasscode && shouldSwitchToPasscode(err)) {
           return PasscodeAuth.authenticate();

@@ -12,7 +12,7 @@ const Style = StyleSheet.create({
 
 export default ({ title, onPress, style }) => {
   return (
-    <TouchableHighlight onPress={onPress} activeOpacity={0.6}>
+    <TouchableHighlight onPress={onPress}>
       <Text style={[ style, Style.button ]}>{title}</Text>
     </TouchableHighlight>
   );

@@ -91,7 +91,7 @@ export default class Authenticate extends Component {
     onCancel: PropTypes.func,
     onUnsupported: PropTypes.func,
     onAttempt: PropTypes.func,
-    title: PropTypes.node,
+    titleAndroid: PropTypes.string,
     titleIOS: PropTypes.string,
     secondaryText: PropTypes.node,
     fingerprintState: PropTypes.node,
@@ -102,7 +102,8 @@ export default class Authenticate extends Component {
 
   static defaultProps = {
     acceptPasscode: true,
-    title: null,
+    titleAndroid: '',
+    titleIOS: '',
     secondaryText: null,
     fingerprintState: null,
     onAttempt: () => null,
@@ -121,7 +122,7 @@ export default class Authenticate extends Component {
   componentDidMount () {
     Authenticate.isSupported()
       .then(() => {
-        Authenticate.authenticate(this.onAttempt, this.props.acceptPasscode)
+        Authenticate.authenticate(this.onAttempt, this.props.acceptPasscode,this.props.titleIOS)
           .then(this.onAuthentication)
           .catch(this.onFailure)
       })
@@ -199,24 +200,24 @@ export default class Authenticate extends Component {
   }
 
   get tryAgainState () {
-    return <Text style={[ Style.statusText, Style.warningStatus ]} >Try again</Text>;
+    return <Text style={[ Style.statusText, Style.warningStatus ]} >Thử lại</Text>;
   }
 
   get defaultState () {
-    return <Text style={[ Style.statusText, Style.defaultStatus ]} >Touch Sensor</Text>;
+    return <Text style={[ Style.statusText, Style.defaultStatus ]} >Chạm vào cảm biến</Text>;
   }
 
   get successState () {
-    return <Text style={[Style.statusText, { color: this.props.primaryColor }]} >Success</Text>;
+    return <Text style={[Style.statusText, { color: this.props.primaryColor }]} >Thành công</Text>;
   }
 
   get canceledState () {
-    return <Text style={[ Style.statusText, Style.warningStatus ]} >Canceled</Text>;
+    return <Text style={[ Style.statusText, Style.warningStatus ]} >Bỏ qua</Text>;
   }
 
   get title () {
-    if (this.props.title != null) {
-      return this.props.title;
+    if (this.props.titleAndroid != '') {
+      return <Text style={Style.title} >{this.props.titleAndroid}</Text>;
     }
     return <Text style={Style.title} >Sign in</Text>;
   }
@@ -225,8 +226,7 @@ export default class Authenticate extends Component {
     if (this.props.secondaryText != null) {
       return this.props.secondaryText;
     }
-
-    return <Text style={Style.secondaryText} >Confirm fingerprint to continue</Text>;
+    return <Text style={Style.secondaryText} >Xác nhận dấu vân tay để tiếp tục</Text>;
   }
 
   get fingerprint () {
@@ -250,7 +250,7 @@ export default class Authenticate extends Component {
   get actions () {
     return (
       <View style={Style.actions}>
-        <Action style={{ color: this.props.primaryColor }} title="cancel" onPress={this.cancel}/>
+        <Action style={{ color: this.props.primaryColor }} title="Bỏ qua" onPress={this.cancel}/>
       </View>
     );
   }
