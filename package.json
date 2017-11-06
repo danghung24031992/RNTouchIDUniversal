@@ -1,0 +1,43 @@
+
+{
+  "name": "react-native-touch-id-universal",
+  "version": "1.0.0",
+    "description": "Touch ID for Android and IOS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "",
+  "license": "",
+  "peerDependencies": {
+    "react-native": "^0.41.2",
+    "react-native-windows": "0.41.0-rc.1"
+
+  },
+  "peerDependencies":{
+    "prop-types": "^15.5.10",
+    "react": "^16.0.0-alpha.12",
+    "react-native": "^0.45.1",
+    "react-native-fingerprint-android": "^0.1.4",
+    "react-native-touch-id": "^3.1.0"
+  },
+  "repository":{
+    "type": "git",
+    "url": "git+https://github.com/danghung24031992/RNTouchIDUniversal.git"
+  },
+  "keywords": [
+    "react-native",
+    "rn",
+    "touch-id",
+    "touch",
+    "fingerprint"
+  ],
+  "author": "Dang Hung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danghung24031992/RNTouchIDUniversal/issues"
+  },
+}
